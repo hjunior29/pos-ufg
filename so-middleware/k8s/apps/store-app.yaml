@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-app
+  namespace: census-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: store-app
+  template:
+    metadata:
+      labels:
+        app: store-app
+    spec:
+      containers:
+      - name: store-app
+        image: store-app:latest
+        imagePullPolicy: Never  # For minikube with local images
+        envFrom:
+        - configMapRef:
+            name: app-config
+        env:
+        - name: SERVICE_NAME
+          value: "store-app"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      restartPolicy: Always
