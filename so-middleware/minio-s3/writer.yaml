@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-writer
+  template:
+    metadata:
+      labels:
+        app: minio-writer
+    spec:
+      containers:
+      - name: writer
+        image: hjunior29/minio-writer:latest
+        env:
+        - name: MINIO_HOST
+          value: "minio-service"

@@ -1,0 +1,15 @@
+{
+  "name": "minio-s3",
+  "version": "1.0.0",
+  "main": "minio.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "minio": "^8.0.5"
+  }
+}
