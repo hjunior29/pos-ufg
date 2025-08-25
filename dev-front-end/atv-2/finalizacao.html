@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce - Compra Finalizada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="produtos.html"><i class="bi bi-shop"></i> E-commerce</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <!-- Mensagem de Sucesso -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-success text-white text-center">
+                        <h2><i class="bi bi-check-circle-fill"></i> Compra Realizada com Sucesso!</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <h4 class="text-success mb-3">🎉 Parabéns! Seu pedido foi confirmado!</h4>
+                        <p class="text-muted">Número do pedido: <strong>#E-COM-2024-001</strong></p>
+                        <p class="text-muted">Data da compra: <strong id="dataCompra"></strong></p>
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            Você receberá um e-mail de confirmação em breve com todos os detalhes do seu pedido.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produtos Selecionados -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5><i class="bi bi-bag-check"></i> Produtos Comprados</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Produto 1 - Fictício -->
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_804404-MLA79139784959_092024-F.webp" class="rounded me-3" width="80" height="80" alt="Smartphone">
+                                    <div>
+                                        <h6 class="mb-1">Smartphone Galaxy Pro</h6>
+                                        <small class="text-muted">Samsung Galaxy S24 - Preto</small>
+                                        <div>
+                                            <strong>Quantidade:</strong> 1 unidade<br>
+                                            <strong>Preço unitário:</strong> R$ 2.499,99
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Produto 2 - Fictício -->
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_953284-MLU77358034851_062024-F.webp" class="rounded me-3" width="80" height="80" alt="Headphones">
+                                    <div>
+                                        <h6 class="mb-1">Headphones Bluetooth</h6>
+                                        <small class="text-muted">Sony WH-1000XM5 - Preto</small>
+                                        <div>
+                                            <strong>Quantidade:</strong> 1 unidade<br>
+                                            <strong>Preço unitário:</strong> R$ 1.299,99
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Produto 3 - Fictício -->
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_781751-MLA79081149840_092024-F.webp" class="rounded me-3" width="80" height="80" alt="Smartwatch">
+                                    <div>
+                                        <h6 class="mb-1">Smartwatch Fitness</h6>
+                                        <small class="text-muted">Apple Watch Series 9 - Preto</small>
+                                        <div>
+                                            <strong>Quantidade:</strong> 2 unidades<br>
+                                            <strong>Preço unitário:</strong> R$ 1.899,99
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Produto 4 - Fictício -->
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_610907-MLA85615785282_062025-F.webp" class="rounded me-3" width="80" height="80" alt="Teclado">
+                                    <div>
+                                        <h6 class="mb-1">Teclado Mecânico</h6>
+                                        <small class="text-muted">Corsair K95 RGB Platinum - Preto</small>
+                                        <div>
+                                            <strong>Quantidade:</strong> 1 unidade<br>
+                                            <strong>Preço unitário:</strong> R$ 799,99
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo Financeiro -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5><i class="bi bi-calculator"></i> Resumo Financeiro</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td>Smartphone Galaxy Pro (1x):</td>
+                                            <td class="text-end">R$ 2.499,99</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Headphones Bluetooth (1x):</td>
+                                            <td class="text-end">R$ 1.299,99</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Smartwatch Fitness (2x):</td>
+                                            <td class="text-end">R$ 3.799,98</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Teclado Mecânico (1x):</td>
+                                            <td class="text-end">R$ 799,99</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Subtotal:</strong></td>
+                                            <td class="text-end"><strong>R$ 8.399,95</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Desconto:</td>
+                                            <td class="text-end text-success">-R$ 400,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Frete:</td>
+                                            <td class="text-end text-success">Grátis</td>
+                                        </tr>
+                                        <tr class="border-top">
+                                            <td><strong class="h5 text-success">Total Pago:</strong></td>
+                                            <td class="text-end"><strong class="h5 text-success">R$ 7.999,95</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forma de Pagamento -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5><i class="bi bi-credit-card"></i> Forma de Pagamento</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="https://via.placeholder.com/100x60/007bff/ffffff?text=VISA" alt="Visa" class="img-fluid rounded">
+                            </div>
+                            <div class="col-md-9">
+                                <h6><strong>Cartão de Crédito Visa</strong></h6>
+                                <p class="mb-1">Cartão: <strong>**** **** **** 1234</strong></p>
+                                <p class="mb-1">Titular: <strong>JOÃO SILVA SANTOS</strong></p>
+                                <p class="mb-1">Valor: <strong>R$ 7.999,95</strong></p>
+                                <small class="text-muted">Pagamento processado com segurança</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entrega -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5><i class="bi bi-truck"></i> Informações de Entrega</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><strong>Endereço de Entrega:</strong></h6>
+                                <p class="mb-1">João Silva Santos</p>
+                                <p class="mb-1">Rua das Flores, 123 - Apto 45</p>
+                                <p class="mb-1">Centro - 74000-000</p>
+                                <p class="mb-1">Goiânia - GO</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><strong>Prazo de Entrega:</strong></h6>
+                                <p class="text-success"><strong>5 a 7 dias úteis</strong></p>
+                                <p class="mb-1"><strong>Previsão:</strong> <span id="previsaoEntrega"></span></p>
+                                <small class="text-muted">Você receberá o código de rastreamento por e-mail</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Próximos Passos -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5><i class="bi bi-list-check"></i> Próximos Passos</h5>
+                    </div>
+                    <div class="card-body">
+                        <ol class="list-group list-group-numbered list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Confirmação do Pagamento</div>
+                                    Processamento da transação (até 24h)
+                                </div>
+                                <span class="badge bg-success rounded-pill">Concluído</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Separação dos Produtos</div>
+                                    Nosso estoque prepara seu pedido
+                                </div>
+                                <span class="badge bg-warning rounded-pill">Em andamento</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Envio para Transportadora</div>
+                                    Seus produtos saem do nosso centro de distribuição
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">Pendente</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Entrega</div>
+                                    Receba seus produtos no endereço informado
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">Pendente</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="text-center">
+                    <button class="btn btn-primary btn-lg me-3" onclick="window.location.href='produtos.html'">
+                        <i class="bi bi-arrow-left"></i> Continuar Comprando
+                    </button>
+                    <button class="btn btn-outline-success btn-lg me-3" onclick="window.print()">
+                        <i class="bi bi-printer"></i> Imprimir Comprovante
+                    </button>
+                    <button class="btn btn-outline-secondary btn-lg" onclick="window.location.href='index.html'">
+                        <i class="bi bi-house"></i> Página Inicial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Definir data atual da compra
+        document.getElementById('dataCompra').textContent = new Date().toLocaleDateString('pt-BR');
+        
+        // Calcular previsão de entrega (7 dias úteis a partir de hoje)
+        const hoje = new Date();
+        const previsao = new Date(hoje);
+        previsao.setDate(hoje.getDate() + 10); // Aproximadamente 7 dias úteis considerando finais de semana
+        document.getElementById('previsaoEntrega').textContent = previsao.toLocaleDateString('pt-BR');
+    </script>
+</body>
+</html>

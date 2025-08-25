@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce - Lista de Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi bi-shop"></i> E-commerce</a>
+            <div class="navbar-nav ms-auto">
+                <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrinhoOffcanvas">
+                    <i class="bi bi-cart3"></i> Carrinho (<span id="contadorCarrinho">0</span>)
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-primary mb-4"><i class="bi bi-grid3x3-gap"></i> Nossos Produtos</h2>
+            </div>
+        </div>
+
+        <div class="row" id="listaProdutos">
+            <!-- Produto 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_804404-MLA79139784959_092024-F.webp" class="card-img-top" alt="Smartphone">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Smartphone Galaxy Pro</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Samsung<br>
+                            <strong>Modelo:</strong> Galaxy S24<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.5/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 2.499,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_809624-MLB89858017245_082025-F-macbook-pro-14-m4-10cpu-10gpu-16gb-ram-512gb-ssd.webp" class="card-img-top" alt="Notebook">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Notebook UltraBook</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Dell<br>
+                            <strong>Modelo:</strong> Inspiron 15<br>
+                            <strong>Cor:</strong> Prata
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <span class="ms-1 text-muted">(5.0/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 3.299,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_781751-MLA79081149840_092024-F.webp" class="card-img-top" alt="Smartwatch">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Smartwatch Fitness</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Apple<br>
+                            <strong>Modelo:</strong> Watch Series 9<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.2/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 1.899,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_953284-MLU77358034851_062024-F.webp" class="card-img-top" alt="Headphones">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Headphones Bluetooth</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Sony<br>
+                            <strong>Modelo:</strong> WH-1000XM5<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <span class="ms-1 text-muted">(4.8/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 1.299,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_940190-MLA84841576027_052025-F.webp" class="card-img-top" alt="Tablet">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Tablet Ultra HD</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> iPad<br>
+                            <strong>Modelo:</strong> Air 5ª geração<br>
+                            <strong>Cor:</strong> Space Gray
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.6/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 2.799,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_950789-MLA47717389239_092021-F.webp" class="card-img-top" alt="Camera">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Câmera Digital DSLR</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Canon<br>
+                            <strong>Modelo:</strong> EOS Rebel T100<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.3/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 1.999,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_837752-MLU75074740307_032024-F.webp" class="card-img-top" alt="Console">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Console PlayStation 5</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Sony<br>
+                            <strong>Modelo:</strong> PS5 Standard<br>
+                            <strong>Cor:</strong> Branco
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <span class="ms-1 text-muted">(4.9/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 4.199,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_829887-MLA82642720401_022025-F.webp" class="card-img-top" alt="Mouse">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Mouse Gamer RGB</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Logitech<br>
+                            <strong>Modelo:</strong> G502 Hero<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.4/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 299,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 9 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_610907-MLA85615785282_062025-F.webp" class="card-img-top" alt="Teclado">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Teclado Mecânico</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> Corsair<br>
+                            <strong>Modelo:</strong> K95 RGB Platinum<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <span class="ms-1 text-muted">(4.7/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 799,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 10 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 shadow-sm">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_790040-MLA84842689249_052025-F.webp" class="card-img-top" alt="Monitor">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Monitor 4K UltraWide</h5>
+                        <p class="card-text text-muted small">
+                            <strong>Marca:</strong> LG<br>
+                            <strong>Modelo:</strong> 34WN80C-B<br>
+                            <strong>Cor:</strong> Preto
+                        </p>
+                        <div class="rating mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                            <span class="ms-1 text-muted">(4.1/5)</span>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h5 text-success mb-0">R$ 2.199,99</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, -1)">-</button>
+                                <input type="number" class="form-control text-center quantidade-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary" type="button" onclick="alterarQuantidade(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="adicionarAoCarrinho(this)">
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão Finalizar Compra -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <button class="btn btn-success btn-lg" id="btnFinalizarCompra" onclick="finalizarCompra()" disabled>
+                    <i class="bi bi-credit-card"></i> Finalizar Compra
+                </button>
+                <button class="btn btn-outline-secondary btn-lg ms-3" onclick="window.location.href='index.html'">
+                    <i class="bi bi-arrow-left"></i> Voltar ao Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas do Carrinho -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carrinhoOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title"><i class="bi bi-cart3"></i> Seu Carrinho</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="itensCarrinho">
+                <p class="text-muted text-center">Seu carrinho está vazio</p>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <strong>Total: </strong>
+                <strong id="totalCarrinho">R$ 0,00</strong>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
