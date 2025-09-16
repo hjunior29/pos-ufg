@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: sgcpd_postgres
+    environment:
+      POSTGRES_DB: sgcpd_db
+      POSTGRES_USER: sgcpd_user
+      POSTGRES_PASSWORD: sgcpd_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - sgcpd_network
+
+  app:
+    build: .
+    container_name: sgcpd_app
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: sgcpd_db
+      DB_USER: sgcpd_user
+      DB_PASSWORD: sgcpd_password
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./frontend:/app/frontend
+    networks:
+      - sgcpd_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  sgcpd_network:
+    driver: bridge

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGCP - Sistema de Gerenciamento de Conteúdo Pessoal</title>
+    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <button class="logo-button" id="logoButton" title="Ir para home">
+                    <img src="./static/logo.png" alt="SGCP" class="app-logo">
+                </button>
+                <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+                    <span class="theme-icon">◐</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Buscar notas..." class="search-input">
+                        <span class="search-icon">⌕</span>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <button class="btn btn-primary" id="newNoteBtn">
+                        Nova Nota
+                    </button>
+                </div>
+
+                <div class="filters-section">
+                    <h3 class="section-title">Etiquetas</h3>
+                    <div class="tags-list" id="tagsList">
+                        <!-- Tags will be loaded here -->
+                    </div>
+                    <button class="btn btn-secondary btn-small" id="allNotesBtn">
+                        Todas as Notas
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Mobile Header -->
+            <div class="mobile-header">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" title="Menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <h2 class="mobile-title" id="mobileTitle">Todas as Notas</h2>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="mobile-search">
+                <div class="search-container">
+                    <input type="text" id="mobileSearchInput" placeholder="Buscar notas..." class="search-input">
+                    <span class="search-icon">⌕</span>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay hidden" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+            </div>
+            
+            <!-- Notes List View -->
+            <div class="notes-view page-view" id="notesView">
+                <div class="notes-header">
+                    <h2 class="view-title" id="viewTitle">Todas as Notas</h2>
+                    <div class="view-actions">
+                        <button class="btn btn-icon" id="gridViewBtn" title="Visualização em grade">
+                            <span>⊞</span>
+                        </button>
+                        <button class="btn btn-icon" id="listViewBtn" title="Visualização em lista">
+                            <span>☰</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="notes-container" id="notesContainer">
+                    <!-- Notes will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Note Editor View -->
+            <div class="editor-view page-view hidden" id="editorView">
+                <div class="editor-header">
+                    <button class="btn btn-secondary" id="backToNotesBtn">
+                        Voltar
+                    </button>
+                    <div class="editor-actions">
+                        <button class="btn btn-secondary" id="saveNoteBtn">Salvar</button>
+                        <button class="btn btn-danger" id="deleteNoteBtn">Excluir</button>
+                    </div>
+                </div>
+
+                <div class="editor-content">
+                    <input type="text" id="noteTitle" placeholder="Título da nota..." class="title-input">
+                    
+                    <div class="tags-editor">
+                        <label class="form-label">Etiquetas:</label>
+                        <div class="tags-input" id="tagsEditor">
+                            <!-- Tag selection will be here -->
+                        </div>
+                    </div>
+
+                    <textarea id="noteContent" placeholder="Comece a escrever..." class="content-textarea"></textarea>
+                </div>
+            </div>
+        </main>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay hidden" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="confirmationTitle">Confirmação</h3>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message" id="confirmationMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="confirmationCancel">Cancelar</button>
+                <button class="btn btn-danger" id="confirmationConfirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
