@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Conteúdo Pessoal (SGCP)
 
-Um sistema dinâmico de gerenciamento de conteúdo pessoal inspirado no Evernote, apresentando um design moderno estilo Apple com operações CRUD completas, sistema de etiquetas, funcionalidade de busca e capacidade de alteração de temas.
+Um sistema dinâmico de gerenciamento de conteúdo pessoal inspirado no Evernote, apresentando um design moderno com operações CRUD completas, sistema de etiquetas, funcionalidade de busca e capacidade de alteração de temas.
 
 ## 📋 Visão Geral do Projeto
 
@@ -12,7 +12,6 @@ Este projeto implementa um sistema abrangente de gerenciamento de conteúdo pess
 - **Organização de Conteúdo**: Sistema avançado de etiquetas e categorização
 - **Busca e Filtro**: Busca em tempo real com debouncing e filtragem baseada em etiquetas
 - **Design Responsivo**: Abordagem mobile-first com experiência perfeita entre dispositivos
-- **UI/UX Moderna**: Princípios de design inspirados na Apple com suporte a tema claro/escuro
 
 ## 🏗️ Arquitetura e Tecnologias
 
@@ -39,17 +38,14 @@ note_tags (note_id, tag_id) -- Relacionamento muitos-para-muitos
 ## 🚀 Recursos
 
 ### Funcionalidade Principal
-- ✅ **Gerenciamento de Usuários**: Operações CRUD completas para contas de usuário
 - ✅ **Gerenciamento de Notas**: Criar, editar, atualizar e excluir notas com conteúdo rico
 - ✅ **Sistema de Etiquetas**: Etiquetas com códigos de cores para organização de conteúdo
 - ✅ **Busca em Tempo Real**: Busca de texto completo em títulos e conteúdo de notas
 - ✅ **Filtragem por Etiquetas**: Filtrar notas por etiquetas específicas
-- ✅ **Salvamento Automático**: Salvamento automático de alterações nas notas durante a edição
 
 ### Experiência do Usuário
 - ✅ **Design Responsivo**: Design mobile-first que funciona em todos os tamanhos de tela
 - ✅ **Alternância de Tema**: Modo claro/escuro com detecção de preferência do sistema
-- ✅ **UI Inspirada na Apple**: Design limpo e minimalista seguindo princípios de design da Apple
 - ✅ **Estados de Carregamento**: Feedback visual durante operações da API
 - ✅ **Notificações Toast**: Mensagens de sucesso/erro não intrusivas
 - ✅ **Estados Vazios**: Orientação útil quando não há conteúdo disponível
@@ -62,13 +58,6 @@ note_tags (note_id, tag_id) -- Relacionamento muitos-para-muitos
 - ✅ **Suporte Docker**: Deployment completamente containerizado
 
 ## 🎨 Princípios de Design
-
-### Design Inspirado na Apple
-- **Minimalismo**: Interface limpa com foco no conteúdo
-- **Tipografia**: Família de fontes Inter para legibilidade otimizada
-- **Cores**: Cores apropriadas ao sistema com significado semântico
-- **Espaçamento**: Sistema de grid consistente de 8px
-- **Interações**: Animações e transições sutis
 
 ### Sistema de Cores
 - **Tema Claro**: Brancos limpos e cinzas sutis
@@ -148,12 +137,12 @@ sgcp/
 
 2. **Inicie o PostgreSQL** (usando Docker)
    ```bash
-   docker run --name sgcp-postgres -e POSTGRES_DB=sgcpd_db -e POSTGRES_USER=sgcpd_user -e POSTGRES_PASSWORD=sgcpd_password -p 5432:5432 -d postgres:15-alpine
+   docker run --name sgcp-postgres -e POSTGRES_DB=sgcpd_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 5432:5432 -d postgres:15-alpine
    ```
 
 3. **Inicialize o banco de dados**
    ```bash
-   psql -h localhost -U sgcpd_user -d sgcpd_db -f backend/db/schema.sql
+   psql -h localhost -U admin -d sgcpd_db -f backend/db/schema.sql
    ```
 
 4. **Inicie o servidor de desenvolvimento**
@@ -270,16 +259,6 @@ A aplicação é totalmente responsiva e oferece uma experiência otimizada em t
 - Manipulação eficiente do DOM
 - CSS otimizado com propriedades personalizadas
 
-## 📈 Melhorias Futuras
-
-Possíveis melhorias para iterações futuras:
-- Edição de texto rico com opções de formatação
-- Anexos de arquivos e suporte a imagens
-- Funcionalidade de exportação (PDF, Markdown)
-- Recursos de colaboração
-- Busca avançada com filtros
-- Capacidades de backup e sincronização
-
 ## 👨‍💻 Equipe de Desenvolvimento
 - [Hélder Júnior](https://github.com/hjunior29)
 - [Diego Costa](https://github.com/CostaDiego)
@@ -289,3 +268,6 @@ Possíveis melhorias para iterações futuras:
 - Instituição: UFG (Universidade Federal de Goiás)
 - Curso: Desenvolvimento Frontend, Pós Graduação INF
 - Período Acadêmico: 2025
+
+## Apresentação do Design
+- https://link.excalidraw.com/p/readonly/lLRxa55HnvHSFn6rt4wm

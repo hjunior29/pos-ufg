@@ -34,7 +34,7 @@ class App {
         // Navigation
         document.getElementById('newNoteBtn').addEventListener('click', () => {
             this.closeMobileMenu();
-            window.router.navigate('editor');
+            window.router.navigateToNewNote();
         });
 
         document.getElementById('backToNotesBtn').addEventListener('click', () => {
@@ -50,7 +50,7 @@ class App {
         document.getElementById('logoButton').addEventListener('click', () => {
             this.closeMobileMenu();
             this.clearFilters();
-            window.router.navigate('notes');
+            window.router.navigateToNotes();
         });
 
         // Search - Desktop
@@ -333,7 +333,7 @@ class App {
         } catch (error) {
             console.error('Failed to load note:', error);
             Components.showToast('Falha ao carregar nota', 'error');
-            window.router.navigate('notes');
+            window.router.navigateToNotes();
         } finally {
             Components.hideLoading();
         }
@@ -421,7 +421,7 @@ class App {
             this.hasUnsavedChanges = false;
             
             // Redirect back to notes view with last filter applied immediately
-            window.router.navigate('notes');
+            window.router.navigateToNotes();
             this.applyLastFilter();
             
         } catch (error) {
@@ -456,7 +456,7 @@ class App {
             Components.showLoading();
             await window.api.deleteNote(this.currentNote.id);
             Components.showToast('Nota excluída com sucesso');
-            window.router.navigate('notes');
+            window.router.navigateToNotes();
             this.loadNotes();
         } catch (error) {
             console.error('Failed to delete note:', error);

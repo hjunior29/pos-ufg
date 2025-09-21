@@ -16,12 +16,17 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.use('/api/users', usersRouter);
 app.use('/api/notes', notesRouter);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
-
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// SPA routing - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+    // Skip API routes
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ error: 'API endpoint not found' });
+    }
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 app.use((err, req, res, next) => {

@@ -46,7 +46,7 @@ class Components {
         `;
 
         noteCard.addEventListener('click', () => {
-            window.router.navigate('editor', { noteId: note.id });
+            window.router.navigateToNote(note.id);
         });
 
         return noteCard;
