@@ -1,0 +1,43 @@
+helder@Helders-MacBook-Air test % ./notes_crud.sh test_all
+[2025-09-29 16:31:51] 🧪 INICIANDO TESTE COMPLETO DE CRUD
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 📝 CRUD_CREATE: Iniciando criação de nova nota
+[2025-09-29 16:31:51] 🚀 REQUEST: POST http://localhost:3000/api/notes
+[2025-09-29 16:31:51] 📦 BODY: {"title":"Nota de Teste Completo","content":"Conteúdo inicial da nota de teste","userId":1}
+[2025-09-29 16:31:51] ✅ RESPONSE (201): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"id":6,"title":"Nota de Teste Completo","content":"Conteúdo inicial da nota de teste","created_at":"2025-09-29T19:31:51.704Z","updated_at":"2025-09-29T19:31:51.704Z","tags":[]}
+[2025-09-29 16:31:51] 🏁 CRUD_CREATE: Operação finalizada
+[2025-09-29 16:31:51] 🆔 ID capturado: 6
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 📚 CRUD_READ: Iniciando busca de todas as notas
+[2025-09-29 16:31:51] 🚀 REQUEST: GET http://localhost:3000/api/notes?userId=1
+[2025-09-29 16:31:51] ✅ RESPONSE (200): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: [{"id":6,"title":"Nota de Teste Completo","content":"Conteúdo inicial da nota de teste","created_at":"2025-09-29T19:31:51.704Z","updated_at":"2025-09-29T19:31:51.704Z","tags":[]},{"id":5,"title":"Nota de Teste","content":"Conteúdo inicial da nota de teste","created_at":"2025-09-29T19:28:57.653Z","updated_at":"2025-09-29T19:28:57.653Z","tags":[]},{"id":4,"title":"Nota de Teste","content":"Conteúdo inicial da nota de teste","created_at":"2025-09-29T19:27:31.165Z","updated_at":"2025-09-29T19:27:31.165Z","tags":[]},{"id":3,"title":"Ideias de Projetos","content":"Mantenha registro de suas ideias de projetos e pensamentos aqui. Você pode organizá-las com etiquetas e pesquisar facilmente.","created_at":"2025-09-29T19:21:02.862Z","updated_at":"2025-09-29T19:21:02.862Z","tags":[{"id":3,"name":"Ideias","color":"#45B7D1"},{"id":7,"name":"Projeto","color":"#BB8FCE"}]},{"id":2,"title":"Primeiros Passos","content":"Comece criando novas notas, adicionando etiquetas e organizando seu conteúdo. Use a função de busca para encontrar rapidamente o que precisa.","created_at":"2025-09-29T19:21:02.862Z","updated_at":"2025-09-29T19:21:02.862Z","tags":[{"id":4,"name":"Importante","color":"#FFA07A"}]}]
+[2025-09-29 16:31:51] 🏁 CRUD_READ: Operação finalizada
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 🔍 CRUD_READ: Iniciando busca da nota ID 6
+[2025-09-29 16:31:51] 🚀 REQUEST: GET http://localhost:3000/api/notes/6?userId=1
+[2025-09-29 16:31:51] ✅ RESPONSE (200): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"id":6,"title":"Nota de Teste Completo","content":"Conteúdo inicial da nota de teste","created_at":"2025-09-29T19:31:51.704Z","updated_at":"2025-09-29T19:31:51.704Z","tags":[]}
+[2025-09-29 16:31:51] 🏁 CRUD_READ: Operação finalizada
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] ✏️  CRUD_UPDATE: Iniciando edição da nota ID 6
+[2025-09-29 16:31:51] 🚀 REQUEST: PUT http://localhost:3000/api/notes/6
+[2025-09-29 16:31:51] 📦 BODY: {"title":"Nota Editada no Teste","content":"Conteúdo modificado durante o teste","userId":1}
+[2025-09-29 16:31:51] ✅ RESPONSE (200): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"id":6,"title":"Nota Editada no Teste","content":"Conteúdo modificado durante o teste","created_at":"2025-09-29T19:31:51.704Z","updated_at":"2025-09-29T19:31:51.897Z","tags":[]}
+[2025-09-29 16:31:51] 🏁 CRUD_UPDATE: Operação finalizada
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 🔍 CRUD_READ: Iniciando busca da nota ID 6
+[2025-09-29 16:31:51] 🚀 REQUEST: GET http://localhost:3000/api/notes/6?userId=1
+[2025-09-29 16:31:51] ✅ RESPONSE (200): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"id":6,"title":"Nota Editada no Teste","content":"Conteúdo modificado durante o teste","created_at":"2025-09-29T19:31:51.704Z","updated_at":"2025-09-29T19:31:51.897Z","tags":[]}
+[2025-09-29 16:31:51] 🏁 CRUD_READ: Operação finalizada
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 🗑️  CRUD_DELETE: Iniciando deleção da nota ID 6
+[2025-09-29 16:31:51] 🚀 REQUEST: DELETE http://localhost:3000/api/notes/6?userId=1
+[2025-09-29 16:31:51] ✅ RESPONSE (200): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"message":"Note deleted successfully"}
+[2025-09-29 16:31:51] 🏁 CRUD_DELETE: Operação finalizada
+[2025-09-29 16:31:51] 
+[2025-09-29 16:31:51] 🏆 TESTE COMPLETO FINALIZADO

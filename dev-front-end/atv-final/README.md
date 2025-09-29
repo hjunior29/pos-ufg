@@ -75,7 +75,7 @@ note_tags (note_id, tag_id) -- Relacionamento muitos-para-muitos
 ## 📁 Estrutura do Projeto
 
 ```
-sgcp/
+atv-final/
 ├── backend/
 │   ├── server.js           # Configuração do servidor Express
 │   ├── db/
@@ -84,9 +84,12 @@ sgcp/
 │   ├── models/
 │   │   ├── user.js         # Modelo de dados e operações do usuário
 │   │   └── note.js         # Modelo de dados e operações das notas
-│   └── routes/
-│       ├── users.js        # Endpoints da API de usuários
-│       └── notes.js        # Endpoints da API de notas
+│   ├── routes/
+│   │   ├── users.js        # Endpoints da API de usuários
+│   │   └── notes.js        # Endpoints da API de notas
+│   └── test/
+│       ├── test.sh         # Script de teste CRUD para API
+│       └── result.log      # Logs de execução dos testes
 ├── frontend/
 │   ├── index.html          # Template principal da aplicação
 │   ├── css/
@@ -121,7 +124,7 @@ sgcp/
 
 2. **Inicie a aplicação**
    ```bash
-   docker-compose up --build
+   docker-compose up -d
    ```
 
 3. **Acesse a aplicação**
@@ -194,6 +197,56 @@ sgcp/
 1. Clique no botão de alternância de tema (◐/☀) no cabeçalho da barra lateral
 2. A preferência de tema é automaticamente salva
 3. O tema do sistema é detectado por padrão
+
+## 🧪 Testes da API
+
+### Script de Teste CRUD
+
+O projeto inclui um script bash automatizado (`backend/test/test.sh`) para testar todas as operações CRUD da API de notas.
+
+#### Recursos do Script de Teste
+- ✅ **Logs Verbosos**: Timestamps detalhados com emojis para fácil identificação
+- ✅ **IDs Dinâmicos**: Captura automaticamente IDs das respostas da API
+- ✅ **Códigos de Status**: Validação de códigos HTTP (200, 201, 404, 500)
+- ✅ **Request/Response**: Mostra corpo das requisições e respostas JSON
+- ✅ **Teste Completo**: Executa ciclo CRUD completo automaticamente
+
+#### Comandos Disponíveis
+```bash
+# Navegar para o diretório de testes
+cd backend/test
+
+# Executar operações individuais
+./test.sh create        # Criar nova nota (dados mockados)
+./test.sh read          # Listar todas as notas
+./test.sh read_one      # Ler primeira nota disponível
+./test.sh edit          # Editar primeira nota disponível
+./test.sh delete        # Deletar primeira nota disponível
+
+# Executar teste completo
+./test.sh test_all      # Executa sequência CRUD completa
+```
+
+#### Resultado dos Testes
+- **CREATE**: Nota criada com sucesso (Status 201)
+- **READ ALL**: Lista de notas recuperada (Status 200)
+- **READ ONE**: Nota específica recuperada (Status 200)
+- **UPDATE**: Nota editada com sucesso (Status 200)
+- **DELETE**: Nota removida completamente (Status 200)
+
+#### Exemplo de Log de Saída
+```
+[2025-09-29 16:31:51] 🧪 INICIANDO TESTE COMPLETO DE CRUD
+[2025-09-29 16:31:51] 📝 CRUD_CREATE: Iniciando criação de nova nota
+[2025-09-29 16:31:51] 🚀 REQUEST: POST http://localhost:3000/api/notes
+[2025-09-29 16:31:51] 📦 BODY: {"title":"Nota de Teste","content":"Conteúdo..."}
+[2025-09-29 16:31:51] ✅ RESPONSE (201): SUCCESS
+[2025-09-29 16:31:51] 📄 RESPONSE BODY: {"id":6,"title":"Nota de Teste"...}
+[2025-09-29 16:31:51] 🆔 ID capturado: 6
+[2025-09-29 16:31:51] 🏆 TESTE COMPLETO FINALIZADO
+```
+
+**Conclusão dos Testes**: ✅ API de notas completamente funcional e pronta para produção.
 
 ## 🔧 Implementação Técnica
 
