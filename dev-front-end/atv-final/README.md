@@ -4,9 +4,7 @@ Um sistema dinâmico de gerenciamento de conteúdo pessoal inspirado no Evernote
 
 ## 📋 Visão Geral do Projeto
 
-Este projeto implementa um sistema abrangente de gerenciamento de conteúdo pessoal seguindo requisitos acadêmicos para trabalhos de desenvolvimento frontend. A aplicação demonstra práticas modernas de desenvolvimento web com foco na experiência do usuário, design responsivo e arquitetura de código limpa.
-
-### 🎯 Objetivos Educacionais
+Este projeto implementa um sistema abrangente de gerenciamento de conteúdo pessoal, com foco na experiência do usuário, design responsivo e arquitetura de código limpa.
 
 - **Operações CRUD**: Funcionalidade completa de Criar, Ler, Atualizar, Excluir para usuários e notas
 - **Organização de Conteúdo**: Sistema avançado de etiquetas e categorização
@@ -276,10 +274,9 @@ A aplicação é totalmente responsiva e oferece uma experiência otimizada em t
 - **Tablet**: Layout de duas colunas com barra lateral persistente
 - **Desktop**: Layout completo de três colunas com máxima produtividade
 
-## 🎯 Conformidade com Requisitos Acadêmicos
+## 🎯 Conformidade com Requisitos
 
 ### Requisitos Funcionais ✅
-- ✅ Operações CRUD de usuário
 - ✅ Operações CRUD de conteúdo
 - ✅ Sistema de categorização/etiquetas
 - ✅ Capacidades de filtragem e busca
@@ -291,6 +288,7 @@ A aplicação é totalmente responsiva e oferece uma experiência otimizada em t
 - ✅ Performance rápida com carregamento otimizado
 - ✅ Código manutenível e documentado
 - ✅ Arquitetura limpa e modular
+- ✅ Modo Claro/Escuro
 
 ### Requisitos de Tecnologia ✅
 - ✅ Markup semântico HTML5
@@ -320,7 +318,7 @@ A aplicação é totalmente responsiva e oferece uma experiência otimizada em t
 **Projeto Estudantil para Curso de Desenvolvimento Frontend**
 - Instituição: UFG (Universidade Federal de Goiás)
 - Curso: Desenvolvimento Frontend, Pós Graduação INF
-- Período Acadêmico: 2025
+- Ano Acadêmico: 2025
 
 ## Apresentação do Design
 - https://link.excalidraw.com/p/readonly/lLRxa55HnvHSFn6rt4wm
