@@ -16,33 +16,119 @@ API REST para gerenciamento de restaurante com sistema de garçom eletrônico.
   - Fácil integração com bancos de dados (TypeORM, Prisma)
   - Excelente documentação e comunidade ativa
 
+### Banco de Dados
+- **SQLite**: Banco de dados relacional leve, ideal para desenvolvimento e demonstração
+- **TypeORM**: ORM (Object-Relational Mapping) para gerenciamento de entidades e consultas
+
 ## Estrutura do Projeto
 
 ```
 dev-back-end/
 ├── src/
-│   └── domain/
-│       └── dto/           # Data Transfer Objects (Camada de Domínio)
-│           ├── caixa.dto.ts
-│           ├── cardapio.dto.ts
-│           ├── categoria.dto.ts
-│           ├── cliente.dto.ts
-│           ├── conta.dto.ts
-│           ├── cozinha.dto.ts
-│           ├── garcom.dto.ts
-│           ├── gerente.dto.ts
-│           ├── index.ts
-│           ├── item-cardapio.dto.ts
-│           ├── item-pedido.dto.ts
-│           ├── mesa.dto.ts
-│           ├── pagamento.dto.ts
-│           ├── pedido.dto.ts
-│           ├── restaurante.dto.ts
-│           └── usuario.dto.ts
+│   ├── app.module.ts          # Módulo principal da aplicação
+│   ├── main.ts                # Ponto de entrada da aplicação
+│   ├── domain/
+│   │   ├── dto/               # Data Transfer Objects (Camada de Domínio)
+│   │   │   ├── caixa.dto.ts
+│   │   │   ├── cardapio.dto.ts
+│   │   │   ├── categoria.dto.ts
+│   │   │   ├── cliente.dto.ts
+│   │   │   ├── conta.dto.ts
+│   │   │   ├── cozinha.dto.ts
+│   │   │   ├── garcom.dto.ts
+│   │   │   ├── gerente.dto.ts
+│   │   │   ├── index.ts
+│   │   │   ├── item-cardapio.dto.ts
+│   │   │   ├── item-pedido.dto.ts
+│   │   │   ├── mesa.dto.ts
+│   │   │   ├── pagamento.dto.ts
+│   │   │   ├── pedido.dto.ts
+│   │   │   ├── restaurante.dto.ts
+│   │   │   └── usuario.dto.ts
+│   │   └── entities/          # Entidades do banco de dados
+│   │       ├── mesa.entity.ts
+│   │       ├── conta.entity.ts
+│   │       ├── pedido.entity.ts
+│   │       ├── item-pedido.entity.ts
+│   │       ├── item-cardapio.entity.ts
+│   │       └── index.ts
+│   └── modules/               # Módulos da aplicação
+│       ├── mesa/              # Módulo de Mesas
+│       │   ├── mesa.controller.ts
+│       │   ├── mesa.service.ts
+│       │   └── mesa.module.ts
+│       ├── pedido/            # Módulo de Pedidos
+│       │   ├── pedido.controller.ts
+│       │   ├── pedido.service.ts
+│       │   ├── pedido.dto.ts
+│       │   └── pedido.module.ts
+│       ├── conta/             # Módulo de Contas
+│       │   ├── conta.controller.ts
+│       │   ├── conta.service.ts
+│       │   ├── conta.dto.ts
+│       │   └── conta.module.ts
+│       └── item-cardapio/     # Módulo de Itens do Cardápio
+│           ├── item-cardapio.controller.ts
+│           ├── item-cardapio.service.ts
+│           └── item-cardapio.module.ts
+├── garcom-eletronico.db       # Banco de dados SQLite
 ├── package.json
 ├── tsconfig.json
 └── README.md
 ```
+
+## Endpoints da API
+
+### Módulo Mesa (`/api/mesas`)
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/mesas` | Listar todas as mesas |
+| GET | `/api/mesas/disponiveis` | Listar mesas disponíveis |
+| GET | `/api/mesas/:id` | Buscar mesa por ID |
+| POST | `/api/mesas` | Criar nova mesa |
+| PUT | `/api/mesas/:id` | Atualizar mesa |
+| DELETE | `/api/mesas/:id` | Remover mesa |
+| **PATCH** | `/api/mesas/:id/ocupar` | **[NÃO-CRUD]** Ocupar mesa |
+| PATCH | `/api/mesas/:id/liberar` | Liberar mesa |
+
+### Módulo Pedido (`/api/pedidos`)
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/pedidos` | Listar todos os pedidos |
+| GET | `/api/pedidos/:id` | Buscar pedido por ID |
+| GET | `/api/pedidos/conta/:contaId` | Listar pedidos de uma conta |
+| POST | `/api/pedidos` | Criar novo pedido |
+| POST | `/api/pedidos/:id/itens` | Adicionar item ao pedido |
+| DELETE | `/api/pedidos/:id` | Remover pedido |
+| **POST** | `/api/pedidos/:id/enviar-cozinha` | **[NÃO-CRUD]** Enviar para cozinha |
+| PATCH | `/api/pedidos/:id/em-preparo` | Marcar em preparo |
+| PATCH | `/api/pedidos/:id/pronto` | Marcar como pronto |
+| PATCH | `/api/pedidos/:id/entregue` | Marcar como entregue |
+
+### Módulo Conta (`/api/contas`)
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/contas` | Listar todas as contas |
+| GET | `/api/contas/abertas` | Listar contas abertas |
+| GET | `/api/contas/:id` | Buscar conta por ID |
+| GET | `/api/contas/:id/resumo` | Obter resumo da conta |
+| GET | `/api/contas/mesa/:mesaId` | Listar contas de uma mesa |
+| POST | `/api/contas` | Criar nova conta |
+| PUT | `/api/contas/:id` | Atualizar conta |
+| DELETE | `/api/contas/:id` | Remover conta |
+| **POST** | `/api/contas/:id/fechar` | **[NÃO-CRUD]** Fechar conta |
+| POST | `/api/contas/:id/pagar` | Marcar como paga |
+
+### Módulo Item Cardápio (`/api/itens-cardapio`)
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/itens-cardapio` | Listar todos os itens |
+| GET | `/api/itens-cardapio/disponiveis` | Listar itens disponíveis |
+| GET | `/api/itens-cardapio/:id` | Buscar item por ID |
+| POST | `/api/itens-cardapio` | Criar novo item |
+| PUT | `/api/itens-cardapio/:id` | Atualizar item |
+| DELETE | `/api/itens-cardapio/:id` | Remover item |
+| PATCH | `/api/itens-cardapio/:id/disponibilidade` | Alterar disponibilidade |
 
 ## Camada de Domínio - DTOs
 
@@ -161,24 +247,33 @@ npm start
 - `reflect-metadata` - Metadata reflection API
 - `typescript` - Compilador TypeScript
 
-## Próximos Passos
+## Instalacao e Execucao
 
-1. Implementar a camada de persistência (Entities e Repository)
-2. Criar a camada de serviços (Business Logic)
-3. Implementar os controllers (Endpoints REST)
-4. Adicionar autenticação e autorização
-5. Configurar banco de dados (PostgreSQL/MySQL)
-6. Implementar testes unitários e de integração
-7. Adicionar documentação Swagger/OpenAPI
+```bash
+# Instalar dependencias
+npm install
+
+# Compilar o projeto
+npm run build
+
+# Iniciar o servidor
+npm start
+```
+
+O servidor estara disponivel em `http://localhost:3000`
+
+## Documentacao Adicional
+
+- [GUIA-APRESENTACAO.md](GUIA-APRESENTACAO.md) - Guia completo para apresentacao das URIs implementadas
 
 ## Diagrama de Classes
 
 O projeto foi desenvolvido seguindo o diagrama de classes UML fornecido, que define:
 - Relacionamentos entre entidades (1:1, 1:*, 0..*)
-- Hierarquia de classes (herança)
+- Hierarquia de classes (heranca)
 - Atributos e tipos de dados
-- Associações e composições
+- Associacoes e composicoes
 
 ## Autor
 
-Desenvolvido como parte do trabalho final do curso de Desenvolvimento Back-End da Pós-Graduação em Informática da UFG.
+Desenvolvido como parte do trabalho final do curso de Desenvolvimento Back-End da Pos-Graduacao em Informatica da UFG.
