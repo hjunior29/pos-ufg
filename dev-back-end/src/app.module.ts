@@ -18,7 +18,8 @@ import { ItemPedido } from './domain/entities/item-pedido.entity';
       type: 'sqlite',
       database: 'garcom-eletronico.db',
       entities: [Mesa, ItemCardapio, Conta, Pedido, ItemPedido],
-      synchronize: true, // Apenas para desenvolvimento - cria as tabelas automaticamente
+      synchronize: false, // Usar migrations para controle do schema
+      migrationsRun: false, // Executar migrations manualmente via npm run migration:run
       logging: true,
     }),
     MesaModule,

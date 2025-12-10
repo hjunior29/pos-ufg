@@ -27,24 +27,15 @@ dev-back-end/
 ├── src/
 │   ├── app.module.ts          # Módulo principal da aplicação
 │   ├── main.ts                # Ponto de entrada da aplicação
+│   ├── database/              # Configuração do banco de dados
+│   │   ├── data-source.ts     # DataSource para migrations
+│   │   ├── run-migrations.ts  # Script para executar migrations
+│   │   ├── revert-migrations.ts # Script para reverter migrations
+│   │   └── migrations/        # Arquivos de migration
+│   │       └── 1733540000000-CreateInitialTables.ts
 │   ├── domain/
 │   │   ├── dto/               # Data Transfer Objects (Camada de Domínio)
-│   │   │   ├── caixa.dto.ts
-│   │   │   ├── cardapio.dto.ts
-│   │   │   ├── categoria.dto.ts
-│   │   │   ├── cliente.dto.ts
-│   │   │   ├── conta.dto.ts
-│   │   │   ├── cozinha.dto.ts
-│   │   │   ├── garcom.dto.ts
-│   │   │   ├── gerente.dto.ts
-│   │   │   ├── index.ts
-│   │   │   ├── item-cardapio.dto.ts
-│   │   │   ├── item-pedido.dto.ts
-│   │   │   ├── mesa.dto.ts
-│   │   │   ├── pagamento.dto.ts
-│   │   │   ├── pedido.dto.ts
-│   │   │   ├── restaurante.dto.ts
-│   │   │   └── usuario.dto.ts
+│   │   │   └── *.dto.ts
 │   │   └── entities/          # Entidades do banco de dados
 │   │       ├── mesa.entity.ts
 │   │       ├── conta.entity.ts
@@ -54,23 +45,9 @@ dev-back-end/
 │   │       └── index.ts
 │   └── modules/               # Módulos da aplicação
 │       ├── mesa/              # Módulo de Mesas
-│       │   ├── mesa.controller.ts
-│       │   ├── mesa.service.ts
-│       │   └── mesa.module.ts
 │       ├── pedido/            # Módulo de Pedidos
-│       │   ├── pedido.controller.ts
-│       │   ├── pedido.service.ts
-│       │   ├── pedido.dto.ts
-│       │   └── pedido.module.ts
 │       ├── conta/             # Módulo de Contas
-│       │   ├── conta.controller.ts
-│       │   ├── conta.service.ts
-│       │   ├── conta.dto.ts
-│       │   └── conta.module.ts
 │       └── item-cardapio/     # Módulo de Itens do Cardápio
-│           ├── item-cardapio.controller.ts
-│           ├── item-cardapio.service.ts
-│           └── item-cardapio.module.ts
 ├── garcom-eletronico.db       # Banco de dados SQLite
 ├── package.json
 ├── tsconfig.json
@@ -217,50 +194,79 @@ Todos os DTOs utilizam decorators do `class-validator` para garantir a integrida
 - `@IsNotEmpty()` - Campo obrigatório
 - `@Min()` - Valor mínimo
 
-## Instalação
-
-```bash
-# Instalar dependências
-npm install
-```
-
-## Scripts Disponíveis
-
-```bash
-# Compilar o projeto
-npm run build
-
-# Iniciar em modo de desenvolvimento
-npm run start:dev
-
-# Iniciar em modo de produção
-npm start
-```
-
-## Dependências Principais
-
-- `@nestjs/common` - Core do NestJS
-- `@nestjs/core` - Funcionalidades principais do NestJS
-- `@nestjs/platform-express` - Adapter para Express
-- `class-validator` - Validação de classes com decorators
-- `class-transformer` - Transformação de objetos
-- `reflect-metadata` - Metadata reflection API
-- `typescript` - Compilador TypeScript
-
 ## Instalacao e Execucao
 
 ```bash
 # Instalar dependencias
 npm install
 
-# Compilar o projeto
-npm run build
+# Executar migrations (criar tabelas no banco)
+npm run migration:run
 
 # Iniciar o servidor
 npm start
 ```
 
 O servidor estara disponivel em `http://localhost:3000`
+
+## Migrations (Banco de Dados)
+
+O projeto utiliza TypeORM Migrations para controle do schema do banco de dados.
+
+### Estrutura de Migrations
+
+```
+src/database/
+├── data-source.ts                              # Configuracao do DataSource
+├── run-migrations.ts                           # Script para executar migrations
+├── revert-migrations.ts                        # Script para reverter migrations
+└── migrations/
+    └── 1733540000000-CreateInitialTables.ts    # Migration inicial
+```
+
+### Scripts Disponiveis
+
+| Script | Comando | Descricao |
+|--------|---------|-----------|
+| `npm run migration:run` | Executa migrations | Cria/atualiza tabelas no banco |
+| `npm run migration:revert` | Reverte migration | Desfaz a ultima migration |
+| `npm run db:reset` | Recria banco | Remove o banco e executa migrations |
+
+### Tabelas Criadas
+
+A migration inicial cria as seguintes tabelas:
+
+1. **mesas** - Mesas do restaurante
+2. **itens_cardapio** - Itens do cardapio
+3. **contas** - Contas das mesas (FK → mesas)
+4. **pedidos** - Pedidos (FK → contas)
+5. **itens_pedido** - Itens dos pedidos (FK → pedidos, itens_cardapio)
+
+### Uso
+
+```bash
+# Primeira vez - criar banco e tabelas
+npm run migration:run
+
+# Reverter ultima migration
+npm run migration:revert
+
+# Recriar banco do zero (apaga dados!)
+npm run db:reset
+```
+
+## Dependencias Principais
+
+- `@nestjs/common` - Core do NestJS
+- `@nestjs/core` - Funcionalidades principais do NestJS
+- `@nestjs/platform-express` - Adapter para Express
+- `@nestjs/typeorm` - Integracao TypeORM com NestJS
+- `typeorm` - ORM para banco de dados
+- `sqlite3` - Driver SQLite
+- `class-validator` - Validacao de classes com decorators
+- `class-transformer` - Transformacao de objetos
+- `reflect-metadata` - Metadata reflection API
+- `typescript` - Compilador TypeScript
 
 ## Documentacao Adicional
 

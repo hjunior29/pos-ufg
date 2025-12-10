@@ -6,6 +6,9 @@
     "build": "tsc",
     "start": "ts-node src/main.ts",
     "start:dev": "ts-node --watch src/main.ts",
+    "migration:run": "ts-node src/database/run-migrations.ts",
+    "migration:revert": "ts-node src/database/revert-migrations.ts",
+    "db:reset": "rm -f garcom-eletronico.db && npm run migration:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
